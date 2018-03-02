@@ -1,1 +1,0 @@
-/usr/share/vim/addons/ftdetect/icinga2.vim

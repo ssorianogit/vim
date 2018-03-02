@@ -1,4 +1,3 @@
-runtime! debian.vim
 
 map <leader>s :source ~/.vimrc<CR>
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
@@ -9,6 +8,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'vim-fugitive'
+Plugin 'vim-airline'
+Plugin 'vim-airline-themes'
 Plugin 'wombat'
 Plugin 'ctrlp.vim'
 call vundle#end()
@@ -22,7 +23,9 @@ endif
 
 syntax on
 filetype on
-colorscheme Tomorrow-Night
+"colorscheme Tomorrow-Night
+set t_Co=256
+
 set listchars=eol:¬,tab:>~
 set list
 set pastetoggle=<F3>
@@ -47,27 +50,22 @@ set showmatch
 set tabstop=2
 set tw=500
 set clipboard=unnamedplus
-set wrap "Wrap lines
+set wrap
+set hidden
+set showtabline=2
+set wildmenu
+set esckeys
+set nostartofline
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = '⮀'
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_theme='powerlineish'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+" remap arrow keys
+nnoremap <PageDown> :bprev<CR>
+nnoremap <PageUp> :bnext<CR>
 
 
-
-
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component': {
-      \   'readonly': '%{&filetype=="help"?"":&readonly?"⭤":""}',
-      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
-      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
-      \ },
-      \ 'component_visible_condition': {
-      \   'readonly': '(&filetype!="help"&& &readonly)',
-      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
-      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
-      \ },
-      \ 'separator': { 'left': '⮀', 'right': '⮂' },
-      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
-      \ }
