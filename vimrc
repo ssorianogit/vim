@@ -12,6 +12,7 @@ Plugin 'vim-airline'
 Plugin 'vim-airline-themes'
 Plugin 'wombat'
 Plugin 'ctrlp.vim'
+Plugin 'vim-flake8'
 call vundle#end()
 
 
@@ -59,7 +60,9 @@ set nostartofline
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = '⮀'
-let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#left_alt_sep = '⮁'
+let g:airline#extensions#tabline#right_sep = '⮀'
+let g:airline#extensions#tabline#right_alt_sep = '⮁'
 let g:airline_theme='powerlineish'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
@@ -67,5 +70,3 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " remap arrow keys
 nnoremap <PageDown> :bprev<CR>
 nnoremap <PageUp> :bnext<CR>
-
-
