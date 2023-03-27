@@ -1,0 +1,85 @@
+call plug#begin('~/.vim/plugged')
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'dracula/vim'
+Plug 'phanviet/vim-monokai-pro'
+Plug 'arcticicestudio/nord-vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'chrisbra/Colorizer'
+Plug 'preservim/nerdtree'
+Plug 'airblade/vim-gitgutter'
+Plug 'fatih/vim-go'
+Plug 'hashivim/vim-terraform'
+call plug#end()
+
+syntax enable
+colorscheme nord
+
+" airline Config
+let g:airline_theme='badwolf'
+let g:airline#extensions#tabline#enabled = 1
+
+set t_Co=256
+set encoding=utf8
+set listchars=eol:¬,tab:>~
+set list
+set pastetoggle=<F3>
+set expandtab
+set background=dark
+set cmdheight=2
+set cursorline
+set foldenable
+set hlsearch
+set laststatus=2
+set lbr
+set magic
+set nocompatible
+set noshowmode
+set number
+set relativenumber
+set ruler
+set shiftwidth=2
+set softtabstop=2
+set showcmd
+set showmatch
+set tabstop=2
+set tw=500
+set wrap
+set hidden
+set showtabline=2
+set wildmenu
+set nostartofline
+set dir=~/.vim/swap
+set clipboard=unnamedplus
+set backspace=indent,eol,start
+
+
+" remap arrow keys
+nnoremap <PageDown> :bprev<CR>
+nnoremap <PageUp> :bnext<CR>
+
+" delete extra spaces
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+autocmd BufWritePre * :call TrimWhitespace()
+
+
+" ---------------------------------------------------------------------------
+"  open Vim in last line
+" ---------------------------------------------------------------------------
+if has("autocmd")
+    au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+  endif
+
+
+" use system clipboard
+" " https://anuragpeshne.github.io/essays/vim/7.html
+noremap y "*y
+noremap yy "*yy
+noremap Y "*y$
+noremap x "*x
+noremap dd "*dd
+noremap D "*D
